@@ -12,4 +12,7 @@ class DEMONS_API AQuestSystem : public AActor
 public:	
 	AQuestSystem();
 
+	// TODO this is a temporary function while we move things over
+	UFUNCTION(BlueprintImplementableEvent)
+	void ObjectiveMet();
 };

@@ -1,5 +1,19 @@
 ﻿#include "UQuestLog.h"
 
+#include "Demons/Debug/DebugUtil.h"
+
+bool UQuestLog::AddQuest(const FDataTableRowHandle& QuestRow)
+{
+	if (HasQuest(QuestRow))
+	{
+		DebugLog("Already on quest " + QuestRow.RowName.ToString());
+		return false;
+	}
+
+	ActiveQuestRefs.Add(QuestRow);
+	return true;
+}
+
 bool UQuestLog::HasQuest(const FDataTableRowHandle& QuestRow)
 {
 	for (auto questRef : ActiveQuestRefs)
@@ -10,9 +24,4 @@ bool UQuestLog::HasQuest(const FDataTableRowHandle& QuestRow)
 	}
 	
 	return false;
-}
-
-void UQuestLog::AddQuestToLog(const FDataTableRowHandle& QuestRow)
-{
-	ActiveQuestRefs.Add(QuestRow);
 }

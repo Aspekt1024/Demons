@@ -16,14 +16,13 @@ public:
 	TArray<FName> CompletedQuests;
 
 	UPROPERTY(BlueprintReadOnly)
-	TArray<FName> CompletedObjectives; 
+	TArray<FName> CompletedObjectives;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnQuestAdded(const FDataTableRowHandle& QuestRow);
 	
-	UFUNCTION(BlueprintImplementableEvent, Category="Quests")
-	void AddQuest(FDataTableRowHandle QuestRow);
-
-	UFUNCTION(BlueprintCallable)
-	bool HasQuest(const FDataTableRowHandle& QuestRow);
-
+	bool AddQuest(const FDataTableRowHandle& QuestRow);
+	
 private:
-	void AddQuestToLog(const FDataTableRowHandle& QuestRow);
+	bool HasQuest(const FDataTableRowHandle& QuestRow);
 };

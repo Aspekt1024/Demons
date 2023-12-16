@@ -20,5 +20,8 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void AddQuest(FDataTableRowHandle QuestRow);
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateObjective(const FDataTableRowHandle& ObjectiveRow, int32 Count);
 	
 };

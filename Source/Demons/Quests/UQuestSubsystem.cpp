@@ -21,20 +21,23 @@ void UQuestSubsystem::AddQuest(FDataTableRowHandle QuestRow)
 {
 	if (QuestLog == nullptr)
 	{
-		DebugLog("Quest Log is not set, cannot add quest!");
+		DebugLogError("Quest Log is not set, cannot add quest!");
 		return;
 	}
 	
 	if (QuestRow.IsNull() || QuestRow.RowName == NAME_None)
 	{
-		DebugLog("Tried to add quest, but quest was null!");
+		DebugLogError("Tried to add quest, but quest was null!");
 		return;
 	}
 
-	if (QuestLog->ActiveQuestRefs.Contains(QuestRow))
+	if (QuestLog->AddQuest(QuestRow))
 	{
-		return;
+		
 	}
+}
 
-	QuestLog->AddQuest(QuestRow);
+void UQuestSubsystem::UpdateObjective(const FDataTableRowHandle& ObjectiveRow, int32 Count)
+{
+	
 }
