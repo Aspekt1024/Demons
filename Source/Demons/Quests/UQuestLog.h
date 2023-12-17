@@ -3,6 +3,10 @@
 #include "CoreMinimal.h"
 #include "UQuestLog.generated.h"
 
+class UQuest;
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FQuestAddDelegate, UQuest*, QuestRow);
+
 UCLASS(BlueprintType, Blueprintable)
 class DEMONS_API UQuestLog : public UActorComponent
 {
@@ -10,19 +14,20 @@ class DEMONS_API UQuestLog : public UActorComponent
 	
 public:
 	UPROPERTY(BlueprintReadOnly)
-	TArray<FDataTableRowHandle> ActiveQuestRefs;
-
-	UPROPERTY(BlueprintReadOnly)
 	TArray<FName> CompletedQuests;
 
 	UPROPERTY(BlueprintReadOnly)
 	TArray<FName> CompletedObjectives;
 
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnQuestAdded(const FDataTableRowHandle& QuestRow);
+	UPROPERTY(BlueprintAssignable)
+	FQuestAddDelegate OnQuestAdded;
 	
-	bool AddQuest(const FDataTableRowHandle& QuestRow);
+	void AddQuest(const FDataTableRowHandle& QuestRow);
+	void UpdateObjective(const FDataTableRowHandle& ObjectiveRow, int32 Count);
 	
 private:
+	TArray<UQuest*> Quests;
 	bool HasQuest(const FDataTableRowHandle& QuestRow);
+
+	void HandleCompletedObjective(const FDataTableRowHandle& ObjectiveRow);
 };

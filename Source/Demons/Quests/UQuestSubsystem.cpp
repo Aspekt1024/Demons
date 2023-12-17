@@ -13,7 +13,6 @@ void UQuestSubsystem::RegisterQuestSystem(AQuestSystem* System)
 		DebugLog("Failed to find Quest system");
 		return;
 	}
-	DebugLog("Adding quest log component")
 	QuestLog = Cast<UQuestLog>(QuestSystem->GetComponentByClass(UQuestLog::StaticClass()));
 }
 
@@ -31,13 +30,11 @@ void UQuestSubsystem::AddQuest(FDataTableRowHandle QuestRow)
 		return;
 	}
 
-	if (QuestLog->AddQuest(QuestRow))
-	{
-		
-	}
+	QuestLog->AddQuest(QuestRow);
 }
 
 void UQuestSubsystem::UpdateObjective(const FDataTableRowHandle& ObjectiveRow, int32 Count)
 {
-	
+	QuestLog->UpdateObjective(ObjectiveRow, Count);
+	OnQuestUpdated.Broadcast();
 }

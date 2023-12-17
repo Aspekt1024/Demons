@@ -14,5 +14,5 @@ public:
 
 	// TODO this is a temporary function while we move things over
 	UFUNCTION(BlueprintImplementableEvent)
-	void ObjectiveMet();
+	void ObjectiveMet(FDataTableRowHandle ObjectiveRow, int Quantity);
 };

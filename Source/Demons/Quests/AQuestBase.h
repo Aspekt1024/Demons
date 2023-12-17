@@ -10,4 +10,5 @@ class AQuestBase : public AActor
 	GENERATED_BODY()
 public:
 	AQuestBase();
+
 };

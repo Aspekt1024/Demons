@@ -6,6 +6,8 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "UQuestSubsystem.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FQuestUpdateDelegate);
+
 UCLASS()
 class DEMONS_API UQuestSubsystem : public UGameInstanceSubsystem
 {
@@ -23,5 +25,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void UpdateObjective(const FDataTableRowHandle& ObjectiveRow, int32 Count);
-	
+
+	UPROPERTY(BlueprintAssignable, Category="Quest")
+	FQuestUpdateDelegate OnQuestUpdated;
 };
