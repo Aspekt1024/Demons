@@ -24,7 +24,7 @@ public:
 	void AddQuest(FDataTableRowHandle QuestRow);
 
 	UFUNCTION(BlueprintCallable)
-	void UpdateObjective(const FDataTableRowHandle& ObjectiveRow, int32 Count);
+	void AddObjectiveProgression(const FDataTableRowHandle& ObjectiveRow, int32 Count);
 
 	UPROPERTY(BlueprintAssignable, Category="Quest")
 	FQuestUpdateDelegate OnQuestUpdated;
