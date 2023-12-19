@@ -20,7 +20,7 @@ class UQuest : public UObject
 	
 public:
 	void Setup(const FDataTableRowHandle& QuestRow, UQuestSubsystem* QuestSS);
-	
+
 	UPROPERTY(BlueprintReadOnly)
 	FDataTableRowHandle QuestHandle;
 

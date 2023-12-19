@@ -2,6 +2,7 @@
 
 #include "FQuestDataTypes.h"
 #include "UQuestSubsystem.h"
+#include "Demons/Debug/DebugUtil.h"
 
 void UQuest::Setup(const FDataTableRowHandle& QuestRow, UQuestSubsystem* QuestSS)
 {
@@ -35,7 +36,6 @@ void UQuest::AddObjectiveProgression(const FDataTableRowHandle& ObjectiveRow, co
 			{
 				IsQuestComplete = true;
 			}
-			OnStageCompleted.Broadcast(QuestDetails.Stages[CurrentStage]);
 			if (IsQuestComplete)
 			{
 				OnQuestCompleted.Broadcast(QuestHandle);
@@ -43,7 +43,8 @@ void UQuest::AddObjectiveProgression(const FDataTableRowHandle& ObjectiveRow, co
 			else
 			{
 				CurrentStage++;
-				SetupStage();	
+				SetupStage();
+				OnStageCompleted.Broadcast(QuestDetails.Stages[CurrentStage - 1]);
 			}
 		}
 	}

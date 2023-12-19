@@ -26,6 +26,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void AddObjectiveProgression(const FDataTableRowHandle& ObjectiveRow, int32 Count);
 
+	UFUNCTION(BlueprintCallable)
+	bool IsObjectiveComplete(const FDataTableRowHandle& ObjectiveRow);
+
 	UPROPERTY(BlueprintAssignable, Category="Quest")
 	FQuestUpdateDelegate OnQuestUpdated;
 };

@@ -24,9 +24,9 @@ void UQuestLog::AddQuest(const FDataTableRowHandle& QuestRow)
 
 void UQuestLog::AddObjectiveProgression(const FDataTableRowHandle& ObjectiveRow, int32 Count)
 {
-	for (UQuest* Quest : Quests)
+	for (int i = Quests.Num() - 1; i >= 0; --i)
 	{
-		Quest->AddObjectiveProgression(ObjectiveRow, Count);
+		Quests[i]->AddObjectiveProgression(ObjectiveRow, Count);
 	}
 }
 
@@ -46,8 +46,8 @@ void UQuestLog::OnQuestCompleted(const FDataTableRowHandle& QuestRow)
 {
 	// TODO unbind from quest completion activities
 	// TODO destroy the quest object, add to completed quests list
-	const UQuest* Quest = GetQuestFromRow(QuestRow);
-	DebugLog("[QuestLog] Quest complete: " + Quest->QuestHandle.RowName.ToString());
+	UQuest* Quest = GetQuestFromRow(QuestRow);
+	Quests.Remove(Quest);
 }
 
 void UQuestLog::OnObjectiveCompleted(const FDataTableRowHandle& ObjectiveRow, bool IsObjectiveComplete)

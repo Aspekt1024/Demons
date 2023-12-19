@@ -38,3 +38,9 @@ void UQuestSubsystem::AddObjectiveProgression(const FDataTableRowHandle& Objecti
 	QuestLog->AddObjectiveProgression(ObjectiveRow, Count);
 	OnQuestUpdated.Broadcast();
 }
+
+bool UQuestSubsystem::IsObjectiveComplete(const FDataTableRowHandle& ObjectiveRow)
+{
+	const int32 Index = QuestLog->CompletedObjectives.Find(ObjectiveRow.RowName);
+	return Index != INDEX_NONE;
+}
