@@ -18,6 +18,8 @@ void UQuest::Setup(const FDataTableRowHandle& QuestRow, UQuestSubsystem* QuestSS
 void UQuest::AddObjectiveProgression(const FDataTableRowHandle& ObjectiveRow, const int32 Count)
 {
 	const int32* Progress = CurrentObjectiveProgress.Find(ObjectiveRow.RowName);
+	// TODO if persistent, then add to completed objectives
+	
 	if (!Progress) return;
 
 	const FQuestObjective* Objective = ObjectiveRow.GetRow<FQuestObjective>(FString(""));

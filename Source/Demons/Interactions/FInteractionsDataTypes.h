@@ -24,6 +24,9 @@ struct FInteractionDetails : public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Interactions")
+	bool CanSkip;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Interactions")
 	FDataTableRowHandle Dialogue;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Interactions")

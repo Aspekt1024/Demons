@@ -33,8 +33,10 @@ void UQuestSubsystem::AddQuest(FDataTableRowHandle QuestRow)
 	QuestLog->AddQuest(QuestRow);
 }
 
-void UQuestSubsystem::AddObjectiveProgression(const FDataTableRowHandle& ObjectiveRow, int32 Count)
+void UQuestSubsystem::AddObjectiveProgression(const FDataTableRowHandle& ObjectiveRow, const int32 Count)
 {
+	if (ObjectiveRow.DataTable == nullptr || ObjectiveRow.RowName.IsNone()) return;
+	
 	QuestLog->AddObjectiveProgression(ObjectiveRow, Count);
 	OnQuestUpdated.Broadcast();
 }
