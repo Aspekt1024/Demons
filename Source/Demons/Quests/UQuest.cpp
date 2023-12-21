@@ -59,18 +59,17 @@ void UQuest::SetupStage()
 {
 	CurrentObjectiveProgress.Empty();
 
-	const TArray<FName>* CompletedObjectives = nullptr;
+	const TMap<FName, int32>* ObjectiveProgress = nullptr;
 	if (QuestSubsystem != nullptr)
 	{
-		CompletedObjectives = &QuestSubsystem->QuestLog->CompletedObjectives;
+		ObjectiveProgress = &QuestSubsystem->QuestLog->ObjectiveProgress;
 	}
 	
 	for (FDataTableRowHandle ObjectiveRow : QuestDetails.Stages[CurrentStage].Objectives)
 	{
-		if (CompletedObjectives != nullptr && CompletedObjectives->Contains(ObjectiveRow.RowName))
+		if (ObjectiveProgress != nullptr && ObjectiveProgress->Contains(ObjectiveRow.RowName))
 		{
-			const FQuestObjective* Objective = ObjectiveRow.GetRow<FQuestObjective>(FString(""));
-			CurrentObjectiveProgress.Add(ObjectiveRow.RowName, Objective->Quantity);
+			CurrentObjectiveProgress.Add(ObjectiveRow.RowName, *ObjectiveProgress->Find(ObjectiveRow.RowName));
 		}
 		else
 		{

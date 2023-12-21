@@ -16,7 +16,6 @@ void UQuestLog::AddQuest(const FDataTableRowHandle& QuestRow)
 	Quest->Setup(QuestRow, QuestSubsystem);
 	Quests.Add(Quest);
 
-	Quest->OnObjectiveUpdated.AddDynamic(this, &UQuestLog::OnObjectiveCompleted);
 	Quest->OnQuestCompleted.AddDynamic(this, &UQuestLog::OnQuestCompleted);
 	
 	OnQuestAdded.Broadcast(Quest);
@@ -24,6 +23,22 @@ void UQuestLog::AddQuest(const FDataTableRowHandle& QuestRow)
 
 void UQuestLog::AddObjectiveProgression(const FDataTableRowHandle& ObjectiveRow, int32 Count)
 {
+	const FQuestObjective* Objective = ObjectiveRow.GetRow<FQuestObjective>(FString(""));
+	if (Objective == nullptr)
+	{
+		DebugLogError("failed to find objective " + ObjectiveRow.RowName.ToString())
+		return;
+	}
+	
+	if (Objective->IsPersistent)
+	{
+		if (ObjectiveProgress.Contains(ObjectiveRow.RowName))
+		{
+			Count += ObjectiveProgress[ObjectiveRow.RowName];
+		}
+		ObjectiveProgress.Add(ObjectiveRow.RowName, Count);
+	}
+	
 	for (int i = Quests.Num() - 1; i >= 0; --i)
 	{
 		Quests[i]->AddObjectiveProgression(ObjectiveRow, Count);
@@ -44,19 +59,8 @@ bool UQuestLog::HasQuest(const FDataTableRowHandle& QuestRow)
 
 void UQuestLog::OnQuestCompleted(const FDataTableRowHandle& QuestRow)
 {
-	// TODO unbind from quest completion activities
-	// TODO destroy the quest object, add to completed quests list
 	UQuest* Quest = GetQuestFromRow(QuestRow);
 	Quests.Remove(Quest);
-}
-
-void UQuestLog::OnObjectiveCompleted(const FDataTableRowHandle& ObjectiveRow, bool IsObjectiveComplete)
-{
-	const bool IsPersistent = ObjectiveRow.GetRow<FQuestObjective>(FString(""))->IsPersistent;
-	if (IsPersistent)
-	{
-		CompletedObjectives.Add(ObjectiveRow.RowName);
-	}
 }
 
 UQuest* UQuestLog::GetQuestFromRow(const FDataTableRowHandle& QuestRow)

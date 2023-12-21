@@ -1,6 +1,7 @@
 #include "UQuestSubsystem.h"
 
 #include "AQuestSystem.h"
+#include "FQuestDataTypes.h"
 #include "Demons/Debug/DebugUtil.h"
 
 AQuestSystem* QuestSystem;
@@ -43,6 +44,8 @@ void UQuestSubsystem::AddObjectiveProgression(const FDataTableRowHandle& Objecti
 
 bool UQuestSubsystem::IsObjectiveComplete(const FDataTableRowHandle& ObjectiveRow)
 {
-	const int32 Index = QuestLog->CompletedObjectives.Find(ObjectiveRow.RowName);
-	return Index != INDEX_NONE;
+	if (!QuestLog->ObjectiveProgress.Contains(ObjectiveRow.RowName)) return false;
+	
+	const FQuestObjective* Objective = ObjectiveRow.GetRow<FQuestObjective>(FString(""));
+	return QuestLog->ObjectiveProgress[ObjectiveRow.RowName] >= Objective->Quantity;
 }

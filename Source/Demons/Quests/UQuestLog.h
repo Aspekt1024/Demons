@@ -18,7 +18,7 @@ public:
 	TArray<FName> CompletedQuests;
 
 	UPROPERTY(BlueprintReadOnly, Category="Quest")
-	TArray<FName> CompletedObjectives;
+	TMap<FName, int32> ObjectiveProgress;
 
 	UPROPERTY(BlueprintAssignable, Category="Quest")
 	FQuestAddDelegate OnQuestAdded;
@@ -34,7 +34,4 @@ private:
 
 	UFUNCTION()
 	void OnQuestCompleted(const FDataTableRowHandle& QuestRow);
-	
-	UFUNCTION()
-	void OnObjectiveCompleted(const FDataTableRowHandle& ObjectiveRow, bool IsObjectiveComplete);
 };
