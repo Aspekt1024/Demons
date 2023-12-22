@@ -1,9 +1,11 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
+#include "FInteractionsDataTypes.h"
 #include "Demons/Quests/UQuestSubsystem.h"
 #include "UInteractionComponent.generated.h"
 
+struct FInteractionTransition;
 struct FInteractionDetails;
 class UQuestSubsystem;
 
@@ -15,20 +17,26 @@ class DEMONS_API UInteractionComponent : public UActorComponent
 public:
 	virtual void BeginPlay() override;
 
-	UPROPERTY(BlueprintReadOnly)
-	bool CanInteract;
-
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UDataTable* InteractionTable;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	FDataTableRowHandle CompletesObjective;
+
+	UPROPERTY(BlueprintReadOnly)
+	bool CanInteract;
+	
+	UPROPERTY(BlueprintReadOnly)
+	FName CurrentInteraction;
 	
 	UFUNCTION(BlueprintCallable)
 	void Interact();
 
 	UFUNCTION(BlueprintCallable)
 	void SetNonInteractable();
+
+	UFUNCTION(BlueprintCallable)
+	void CompleteInteraction(FName InteractionName, bool AllowTransition);
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnInteract();
@@ -40,7 +48,10 @@ private:
 	UPROPERTY()
 	UQuestSubsystem* QuestSubsystem;
 
-	FName CurrentInteraction;
+	TArray<FName> ActionedInteractions;
 
-	FInteractionDetails* DetermineInteraction() const;
+	FInteractionDetails* DetermineInteraction();
+	bool TryProgressInteraction(FInteractionDetails* Interaction);
+	FName GetValidInteractionFromTransitions(FInteractionDetails* Interaction) const;
+	bool CanTransition(const FInteractionTransition& InteractionTransition) const;
 };

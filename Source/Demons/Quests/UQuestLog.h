@@ -28,6 +28,7 @@ public:
 	
 private:
 	TArray<UQuest*> Quests;
+	
 	bool HasQuest(const FDataTableRowHandle& QuestRow);
 	UQuest* GetQuestFromRow(const FDataTableRowHandle& QuestRow);
 	UQuestSubsystem* GetQuestSubsystem() const;

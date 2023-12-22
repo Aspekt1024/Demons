@@ -46,12 +46,12 @@ public:
 	FStageDelegate OnStageCompleted;
 	
 	void AddObjectiveProgression(const FDataTableRowHandle& ObjectiveRow, int32 Count);
-	void SetupStage();
 
 private:
 	UPROPERTY()
 	UQuestSubsystem* QuestSubsystem;
 	
+	void SetupStage();
 	bool IsStageComplete(FQuestStage StageDetails) const;
 	bool IsObjectiveComplete(const FDataTableRowHandle& ObjectiveRow) const;
 };

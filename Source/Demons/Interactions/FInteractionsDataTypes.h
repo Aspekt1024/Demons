@@ -12,6 +12,9 @@ struct FInteractionTransition : public FTableRowBase
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Interactions")
 	FDataTableRowHandle Interaction;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Interactions")
+	bool AllowsSkip;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Interactions")
 	TArray<FDataTableRowHandle> RequiredObjectives;
@@ -22,9 +25,6 @@ USTRUCT(BlueprintType)
 struct FInteractionDetails : public FTableRowBase
 {
 	GENERATED_BODY()
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Interactions")
-	bool CanSkip;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Interactions")
 	FDataTableRowHandle Dialogue;

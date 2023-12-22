@@ -76,6 +76,20 @@ void UQuest::SetupStage()
 			CurrentObjectiveProgress.Add(ObjectiveRow.RowName, 0);	
 		}
 	}
+
+	if (IsStageComplete(QuestDetails.Stages[CurrentStage]))
+	{
+		if (CurrentStage >= QuestDetails.Stages.Num() - 1)
+		{
+			OnQuestCompleted.Broadcast(QuestHandle);
+		}
+		else
+		{
+			CurrentStage++;
+			SetupStage();
+			OnStageCompleted.Broadcast(QuestDetails.Stages[CurrentStage - 1]);
+		}
+	}
 }
 
 bool UQuest::IsStageComplete(FQuestStage StageDetails) const
