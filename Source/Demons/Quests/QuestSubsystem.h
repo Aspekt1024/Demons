@@ -1,10 +1,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AQuestSystem.h"
-#include "Demons/Quests/UQuestLog.h"
+#include "QuestSystem.h"
+#include "QuestLog.h"
 #include "Subsystems/GameInstanceSubsystem.h"
-#include "UQuestSubsystem.generated.h"
+#include "QuestSubsystem.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FQuestUpdateDelegate);
 

@@ -1,7 +1,7 @@
-#include "UQuestSubsystem.h"
+#include "QuestSubsystem.h"
 
-#include "AQuestSystem.h"
-#include "FQuestDataTypes.h"
+#include "QuestSystem.h"
+#include "QuestDataTypes.h"
 #include "Demons/Debug/DebugUtil.h"
 
 AQuestSystem* QuestSystem;

@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "AQuestSystem.generated.h"
+#include "QuestSystem.generated.h"
 
 UCLASS()
 class DEMONS_API AQuestSystem : public AActor

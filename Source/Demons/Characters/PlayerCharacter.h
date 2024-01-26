@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
-#include "ACharacterBase.h"
-#include "APlayerCharacter.generated.h"
+#include "CharacterBase.h"
+#include "PlayerCharacter.generated.h"
 
 UCLASS()
 class DEMONS_API APlayerCharacter : public ACharacterBase

@@ -1,9 +1,9 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
-#include "FInteractionsDataTypes.h"
-#include "Demons/Quests/UQuestSubsystem.h"
-#include "UInteractionComponent.generated.h"
+#include "InteractionsDataTypes.h"
+#include "../Quests/QuestSubsystem.h"
+#include "InteractionComponent.generated.h"
 
 struct FInteractionTransition;
 struct FInteractionDetails;

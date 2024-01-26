@@ -1,8 +1,8 @@
-﻿#include "UInteractionComponent.h"
+﻿#include "InteractionComponent.h"
 
-#include "FInteractionsDataTypes.h"
+#include "InteractionsDataTypes.h"
 #include "Demons/Debug/DebugUtil.h"
-#include "Demons/Quests/FQuestDataTypes.h"
+#include "../Quests/QuestDataTypes.h"
 
 void UInteractionComponent::BeginPlay()
 {

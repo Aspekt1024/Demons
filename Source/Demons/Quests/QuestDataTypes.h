@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
-#include "FQuestDataTypes.generated.h"
+#include "QuestDataTypes.generated.h"
 
 struct FQuestStage;
 struct FQuestObjective;

@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
-#include "FINteractionsDataTypes.generated.h"
+#include "InteractionsDataTypes.generated.h"
 
 struct FInteractionTransition;
 

@@ -1,7 +1,7 @@
-﻿#include "UQuest.h"
+﻿#include "Quest.h"
 
-#include "FQuestDataTypes.h"
-#include "UQuestSubsystem.h"
+#include "QuestDataTypes.h"
+#include "QuestSubsystem.h"
 
 void UQuest::Setup(const FDataTableRowHandle& QuestRow, UQuestSubsystem* QuestSS)
 {

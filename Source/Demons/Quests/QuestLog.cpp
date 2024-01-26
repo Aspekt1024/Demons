@@ -1,6 +1,6 @@
-﻿#include "UQuestLog.h"
+﻿#include "QuestLog.h"
 
-#include "UQuest.h"
+#include "Quest.h"
 #include "Demons/Debug/DebugUtil.h"
 
 void UQuestLog::AddQuest(const FDataTableRowHandle& QuestRow)

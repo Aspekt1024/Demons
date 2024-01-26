@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
-#include "ACharacterBase.generated.h"
+#include "CharacterBase.generated.h"
 
 UCLASS()
 class DEMONS_API ACharacterBase : public ACharacter, public IAbilitySystemInterface

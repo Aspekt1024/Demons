@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
-#include "UQuestLog.generated.h"
+#include "QuestLog.generated.h"
 
 class UQuestSubsystem;
 class UQuest;

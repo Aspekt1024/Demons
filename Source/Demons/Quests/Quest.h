@@ -1,9 +1,9 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
-#include "FQuestDataTypes.h"
-#include "UQuestSubsystem.h"
-#include "UQuest.generated.h"
+#include "QuestDataTypes.h"
+#include "QuestSubsystem.h"
+#include "Quest.generated.h"
 
 struct FQuestObjective;
 struct FQuestStage;
