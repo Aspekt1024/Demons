@@ -29,6 +29,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Combat")
 	void EndWatchCollision(UShapeComponent* Collider);
 
+	UFUNCTION(BlueprintCallable, Category="Combat")
+	void FaceCameraOrEnemy();
+
 private:
 	UFUNCTION()
 	void BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &SweepResult);
